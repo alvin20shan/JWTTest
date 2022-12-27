@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    
+
+        <input id="username" name="username" type="text" />
+        <input id="pwd" name="pwd" type="password" />
+        <input type="submit" value="登录" onclick="submit()"  />
+ 
+    </br>
+    <a id="myinfo" style="color:blue" onclick="myinfo()">My Info</a>
+
+    <script type="text/javascript">
+        var token="";
+        function myinfo()
+        { 
+            $.ajax({
+                url: "/Home/Info",
+                type: "get",
+                dataType: "json",
+                //data: {},
+                async: false,
+                //手动高亮
+                headers: { "Authorization": "Bearer " + token },
+                success: function (d) {
+                    alert(d);
+                    console.log(JSON.stringify(d)); 
+                    $("#myinfo").html(d.data);
+                },
+                error: function (d) {
+                    //alert(JSON.stringify(d))
+                }
+            });
+        }
+
+        function submit()
+        {
+     
+            $.ajax({
+                url: "/Home/Login",
+                type: "post",
+                dataType: "json",
+                data: {'username':$("#username").val(),"pwd":$("#pwd").val()},
+                async: false,
+                //手动高亮
+                    success: function (d) {
+                    var obj = JSON.stringify(d); 
+                    console.log(obj); 
+                    token = d.token; 
+                     
+                },
+                error: function (d) {
+                    alert(JSON.stringify(d))
+                }
+            });
+        }
+    </script>
+</div>
+
+
+
