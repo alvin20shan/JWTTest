@@ -21,7 +21,7 @@ namespace JwtAuthDemo.Controllers
     [Route("[controller]")]
     public class ValuesController : ControllerBase
     {
-
+          
         private readonly ILogger<HomeController> _logger;
         private readonly JwtConfig _jwtoptions;
 

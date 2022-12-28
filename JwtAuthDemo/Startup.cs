@@ -53,7 +53,7 @@ namespace JwtAuthDemo
                     ValidateLifetime=jwtConfig.ValidateLifetime,
                     ValidateIssuer = false,//是否验证发行者
                     ValidateAudience = false//在令牌验证期间验证受众
-                };
+                };  
             });
             //添加swagger服务
             services.AddSwaggerGen(s =>
